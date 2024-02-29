@@ -16,7 +16,7 @@
         place-items: center;
         overflow: hidden;
         background-color: #1e1e1e;
-    }
+    }   
    
     .circle {
         width: 100px;
@@ -25,6 +25,7 @@
         border-radius: 50%;
         position: absolute;
         animation: orbit 10s linear infinite;
+        z-index: -1;
     }
     .letter {
         position: absolute;
@@ -39,6 +40,17 @@
             transform: rotate(360deg);
         }
     }
+    
+
+    .main{
+        margin-top:100px;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
 
 .form-group {
     margin-bottom: 20px;
@@ -100,24 +112,27 @@ input:focus{
 </style>
 </head>
 <body>
+    <div class="main">
+        <div class="form-container">
+            <form>
+                <div class="form-group">
+                    <label for="name" class="label">Name:</label>
+                    <input type="text" id="name" name="name" class="input">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="label">Password:</label>
+                    <input type="password" id="password" class="input" name="password">
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+    
+    </div>
 
-    <div class="form-container">
-        <form>
-            <div class="form-group">
-                <label for="name" class="label">Name:</label>
-                <input type="text" id="name" name="name" class="input">
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
-            </div>
-            <div class="form-group">
-                <label for="password" class="label">Password:</label>
-                <input type="password" id="password" class="input" name="password">
-            </div>
-            <input type="submit" value="Submit">
-        </form>
-
+    
 
 
 <script>

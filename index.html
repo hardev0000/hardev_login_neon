@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ring of Letters</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        width:100vw;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: minmax(400px,auto);
+        place-items: center;
+        overflow: hidden;
+        background-color: #1e1e1e;
+    }
+   
+    .circle {
+        width: 100px;
+        height: 100px;
+        background-color: black;
+        border-radius: 50%;
+        position: absolute;
+        animation: orbit 10s linear infinite;
+    }
+    .letter {
+        position: absolute;
+        font-size: 24px;
+        color: #00ff00;
+    }
+    @keyframes orbit {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+.form-group {
+    margin-bottom: 20px;
+}
+.form-container{
+    z-index: 1;
+    backdrop-filter: blur(5px);
+    width:100%;
+    
+}
+
+.form-container form{
+    
+    padding:2rem 2rem;
+    
+}
+
+label,
+.label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color:aliceblue;
+    margin-bottom:.6rem;
+}
+
+input[type="text"],
+input[type="email"],
+.input {
+    width: 100% ;/* Adjust width for padding */
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    border:1px solid #00ff00;
+    border-color:#00ff00;
+    background-color: rgba(255, 255, 255, 0.1); /* Lighter background color with transparency */
+    color: #ffffff; /* White text color for input */
+   
+}
+
+input[type="submit"] {
+    width:100%; /* Adjust width for padding */
+    background-color: #00ff00; /* Neon green submit button */
+    color: #000000; /* Black text color for submit button */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #00cc00; /* Darker neon green on hover */
+}
+
+input:focus{
+    outline:6px solid #00ff009a;
+}
+
+</style>
+</head>
+<body>
+
+    <div class="form-container">
+        <form>
+            <div class="form-group">
+                <label for="name" class="label">Name:</label>
+                <input type="text" id="name" name="name" class="input">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="password" class="label">Password:</label>
+                <input type="password" id="password" class="input" name="password">
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+
+
+
+<script>
+    const totalRings = 18; // Total number of rings
+    const totalLetters = 26; // Total number of letters
+    const angleIncrement = (2 * Math.PI) / totalLetters; // Angle increment for each letter
+
+    for (let j = 1; j <= totalRings; j++) {
+        const radius = j * 43; // Radius of the circle
+
+        const circle = document.createElement('div');
+        circle.classList.add('circle');
+        circle.style.width = `${radius * -1}px`;
+        circle.style.height = `${radius * -1}px`;
+        document.body.appendChild(circle);
+
+        // Generate letters from A to Z
+        for (let i = 0; i < totalLetters; i++) {
+            const angle = angleIncrement * i;
+            const x = Math.cos(angle) * radius; // Calculate x-coordinate
+            const y = Math.sin(angle) * radius; // Calculate y-coordinate
+
+            const letter = document.createElement('div');
+            letter.classList.add('letter');
+            letter.textContent = String.fromCharCode(65 + i); // Convert ASCII code to letter
+            letter.style.left = `calc(50% + ${x - 12}px)`; // Set left position
+            letter.style.top = `calc(50% + ${y - 12}px)`; // Set top position (adjusting for font size)
+            circle.appendChild(letter);
+        }
+    }
+</script>
+
+</body>
+</html>
